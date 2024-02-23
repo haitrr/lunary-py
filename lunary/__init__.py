@@ -700,7 +700,7 @@ try:
 
 
     def _parse_input(raw_input: Any) -> Any:
-        if not raw_input:
+        if raw_input is None:
             return None
 
         # if it's an array of 1, just parse the first element
@@ -709,20 +709,6 @@ try:
 
         if not isinstance(raw_input, dict):
             return _serialize(raw_input)
-
-        input_value = raw_input.get("input")
-        inputs_value = raw_input.get("inputs")
-        question_value = raw_input.get("question")
-        query_value = raw_input.get("query")
-
-        if input_value:
-            return input_value
-        if inputs_value:
-            return inputs_value
-        if question_value:
-            return question_value
-        if query_value:
-            return query_value
 
         return _serialize(raw_input)
 
